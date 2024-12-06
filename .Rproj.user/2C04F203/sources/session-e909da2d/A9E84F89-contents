@@ -1,5 +1,23 @@
+---
+title: "modules"
+author: '[Name]'
+date: "2024-12-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# clear envionment
+rm(list = ls())
+
+# libraries
+library(tidyverse)
 library(shiny)
-########## modules ##############################################################
+```
+
+## Simple histogram app example
+```{r}
 histogramUI <- function(id) {
   tagList(
     selectInput(NS(id, "var"), "Variable", choices = names(mtcars)),
@@ -19,16 +37,4 @@ histogramServer <- function(id) {
     )
   })
 }
-########## app ##############################################################
-histogramApp <- function(){
-  ui <- fluidPage(
-    histogramUI("hist1")
-  )
-  server <- function(input, output, session){
-    histogramServer("hist1")
-  }
-  shinyApp(ui, server)
-}
-
-# run the app
-histogramApp()
+```
